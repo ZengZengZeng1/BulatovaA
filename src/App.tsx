@@ -373,6 +373,58 @@ export default function App() {
         </div>
       </section>
 
+      {/* Additional Experience Section */}
+      <section className="py-24 px-6 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 text-[10px] font-bold uppercase tracking-widest text-black/40 mb-16">
+            ✦ ДОПОЛНИТЕЛЬНЫЙ ОПЫТ (НАВЕДИ, ЧТОБЫ УВИДЕТЬ)
+          </div>
+
+          <div className="space-y-4">
+            {[
+              { text: "СОЗДАЛА UGC-ПЛАТФОРМУ ДЛЯ КРЕАТОРОВ ПО ВСЕМУ СНГ", highlight: "UGC-ПЛАТФОРМУ", link: "https://ugccreator.ru/" },
+              { text: "РАЗРАБАТЫВАЮ МИНИ-ИГРЫ ДЛЯ МЕССЕНДЖЕРОВ (VIBE CODING)", highlight: "VIBE CODING" },
+              { text: "РАБОТАЛА В НЕЗАВИСИМОЙ КРЕАТИВНОЙ КОМАНДЕ ПОД РУКОВОДСТВОМ СОНЧИ УТОЧКИНОЙ", highlight: "СОНЧИ УТОЧКИНОЙ", link: "https://t.me/x_sonchy" }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileHover={{ opacity: 1, x: 20 }}
+                className="group flex items-center gap-8 py-8 border-b border-black/5 cursor-default transition-all duration-500"
+              >
+                <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                  <div className="w-6 h-6 bg-[#CCFF00] rotate-45 group-hover:scale-150 transition-transform duration-500" style={{ clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)' }} />
+                </div>
+                <h3 className="text-3xl md:text-5xl font-bold tracking-tighter leading-none uppercase">
+                  {item.text.split(item.highlight).map((part, index, array) => (
+                    <React.Fragment key={index}>
+                      {part}
+                      {index < array.length - 1 && (
+                        <span className="relative inline-block">
+                          {item.link ? (
+                            <a 
+                              href={item.link} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:text-emerald-500 transition-colors duration-300"
+                            >
+                              {item.highlight}
+                            </a>
+                          ) : (
+                            item.highlight
+                          )}
+                          <div className="absolute -bottom-2 left-0 w-full h-1 bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+                        </span>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </h3>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section id="contact" className="py-32 px-6 bg-black text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/10 blur-[120px] rounded-full" />
