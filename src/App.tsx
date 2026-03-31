@@ -32,6 +32,7 @@ interface CaseStudy {
   results: string[];
   color: string;
   folderLink?: string;
+  videos?: string[];
 }
 
 // --- Data ---
@@ -58,7 +59,12 @@ const CASE_STUDIES: CaseStudy[] = [
       'Объём продакшена вырос в 2 раза.'
     ],
     color: 'bg-emerald-50',
-    folderLink: 'https://drive.google.com/drive/folders/1n3eMOc5t0xtM-n_Kjj4Fh7VRYNL9lWzD?usp=share_link'
+    folderLink: 'https://drive.google.com/drive/folders/1n3eMOc5t0xtM-n_Kjj4Fh7VRYNL9lWzD?usp=share_link',
+    videos: [
+      'https://vimeo.com/1178715295',
+      'https://vimeo.com/1178715754',
+      'https://vimeo.com/1178716877'
+    ]
   },
   {
     id: 'style-dna',
@@ -80,7 +86,12 @@ const CASE_STUDIES: CaseStudy[] = [
       'Лучший ролик: CTR 1,50% / 1 299 установок приложения.'
     ],
     color: 'bg-indigo-50',
-    folderLink: 'https://drive.google.com/drive/folders/1aiF0juhclPkBJNVq0I4iv4jDG6-7Qdcx?usp=share_link'
+    folderLink: 'https://drive.google.com/drive/folders/1aiF0juhclPkBJNVq0I4iv4jDG6-7Qdcx?usp=share_link',
+    videos: [
+      'https://vimeo.com/1178718615',
+      'https://vimeo.com/1178719706',
+      'https://vimeo.com/1178720234'
+    ]
   },
   {
     id: 'reliz',
@@ -102,7 +113,12 @@ const CASE_STUDIES: CaseStudy[] = [
       'Опыт в playable ads — понимание и механики, и креатива.'
     ],
     color: 'bg-orange-50',
-    folderLink: 'https://drive.google.com/drive/folders/1nAmUfxw8z543CA4rDZ8C1xGBtRfNGTx5?usp=share_link'
+    folderLink: 'https://drive.google.com/drive/folders/1nAmUfxw8z543CA4rDZ8C1xGBtRfNGTx5?usp=share_link',
+    videos: [
+      'https://vimeo.com/860963264',
+      'https://vimeo.com/1178776818',
+      'https://vimeo.com/792918757'
+    ]
   },
   {
     id: 'borscht',
@@ -122,7 +138,12 @@ const CASE_STUDIES: CaseStudy[] = [
       'Агентство вышло на новых клиентов и усилило экспертизу в съёмочных форматах.'
     ],
     color: 'bg-rose-50',
-    folderLink: 'https://drive.google.com/drive/folders/1PQdoTE7g6kFFVpb8e0HE6RWc_uX3rbac?usp=share_link'
+    folderLink: 'https://drive.google.com/drive/folders/1PQdoTE7g6kFFVpb8e0HE6RWc_uX3rbac?usp=share_link',
+    videos: [
+      'https://vimeo.com/696457825',
+      'https://vimeo.com/696447313',
+      'https://vimeo.com/696471275'
+    ]
   }
 ];
 
@@ -174,7 +195,7 @@ const CaseCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index 
           <span>{study.period}</span>
         </div>
         
-        <div className="space-y-6 mb-8">
+        <div className="space-y-6">
           <div>
             <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-3 flex items-center gap-2">
               <Target size={14} /> Контекст
@@ -188,46 +209,60 @@ const CaseCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index 
             <p className="text-sm leading-relaxed text-black/70">{study.myRole}</p>
           </div>
         </div>
-
-        {study.folderLink && (
-          <a 
-            href={study.folderLink} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-emerald-600 transition-all group"
-          >
-            Смотреть материалы <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </a>
-        )}
       </div>
 
-      <div className="lg:w-2/3 grid md:grid-cols-2 gap-8">
-        <div className="bg-white/50 p-6 rounded-2xl border border-black/5">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4 flex items-center gap-2">
-            <Layers size={14} /> Что делала
-          </h4>
-          <ul className="space-y-3">
-            {study.whatIDid.map((item, i) => (
-              <li key={i} className="flex gap-3 text-sm leading-relaxed text-black/80">
-                <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
+      <div className="lg:w-2/3 flex flex-col gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-white/50 p-6 rounded-2xl border border-black/5">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4 flex items-center gap-2">
+              <Layers size={14} /> Что делала
+            </h4>
+            <ul className="space-y-3">
+              {study.whatIDid.map((item, i) => (
+                <li key={i} className="flex gap-3 text-sm leading-relaxed text-black/80">
+                  <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-white/50 p-6 rounded-2xl border border-black/5">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4 flex items-center gap-2">
+              <BarChart3 size={14} /> Результаты
+            </h4>
+            <ul className="space-y-3">
+              {study.results.map((item, i) => (
+                <li key={i} className="flex gap-3 text-sm leading-relaxed font-medium text-black/90">
+                  <Zap size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className="bg-white/50 p-6 rounded-2xl border border-black/5">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4 flex items-center gap-2">
-            <BarChart3 size={14} /> Результаты
-          </h4>
-          <ul className="space-y-3">
-            {study.results.map((item, i) => (
-              <li key={i} className="flex gap-3 text-sm leading-relaxed font-medium text-black/90">
-                <Zap size={16} className="text-emerald-500 shrink-0 mt-0.5" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+
+        {study.videos && (
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 flex items-center gap-2">
+              <Video size={14} /> Избранные видео
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {study.videos.map((videoUrl, i) => {
+                const videoId = videoUrl.split('/').pop();
+                return (
+                  <div key={i} className="aspect-[9/16] rounded-2xl overflow-hidden bg-black/5 border border-black/5 shadow-sm">
+                    <iframe
+                      src={`https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
+                      className="w-full h-full"
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                      title={`${study.title} Video ${i + 1}`}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   </motion.div>
