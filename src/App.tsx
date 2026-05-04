@@ -33,6 +33,7 @@ interface CaseStudy {
   color: string;
   folderLink?: string;
   videos?: string[];
+  amazonStreams?: string[];
 }
 
 // --- Data ---
@@ -49,7 +50,6 @@ const CASE_STUDIES: CaseStudy[] = [
       'Писала сценарии для UGC-видео — 15 оригинальных роликов в месяц.',
       'Каждый месяц формировала и тестировала 10 новых гипотез, анализировала результаты.',
       'Выстроила процессы так, что объём производства вырос в 2 раза — с ~100 до 200+ креативов в месяц.',
-      'Отвечала за запуск influence-направления: согласование инфлюенсеров, работа с подрядными агентствами, документооборот, аналитика, логистика.'
     ],
     results: [
       'Стабильный ежемесячный KPI на протяжении всего года.',
@@ -64,6 +64,55 @@ const CASE_STUDIES: CaseStudy[] = [
       'https://vimeo.com/1178715295',
       'https://vimeo.com/1178715754',
       'https://vimeo.com/1178716877'
+    ]
+  },
+  {
+    id: 'influence',
+    title: 'MAREE',
+    role: 'Lead Influence Manager',
+    period: 'окт 2023 — сент 2024',
+    context: 'Maree — косметический бренд, ориентированный на рынок США. Задача — запустить influence-направление с нуля и выстроить стабильный процесс: от отбора блогеров до аналитики результатов.',
+    myRole: 'Единственный человек, отвечавший за influence-направление. Выстраивала процесс с нуля: отбор кандидатов, согласование интеграций, договорная работа, логистика и аналитика.',
+    whatIDid: [
+      'Оценивала релевантность каждого кандидата и согласовывала интеграции.',
+      'Контролировала подписание договоров с блогерами и подрядными агентствами.',
+      'Организовывала отправку продукта и собирала статистику по каждой кампании.',
+      'В пиковые месяцы — до 100 интеграций одновременно с платными и аффилиатными блогерами.'
+    ],
+    results: [
+      '1000+ продаж с influence-канала.',
+      'Influence-направление выстроено с нуля до стабильно работающего процесса.',
+      'До 100 активных интеграций в месяц в пиковые периоды.'
+    ],
+    color: 'bg-emerald-50',
+    videos: [
+      'https://vimeo.com/1188974687',
+      'https://vimeo.com/1188975126',
+      'https://vimeo.com/1188976238'
+    ]
+  },
+  {
+    id: 'amazon-live',
+    title: 'MAREE',
+    role: 'Lead Influence Manager · Amazon Live',
+    period: 'окт 2023 — сент 2024',
+    context: 'Запуск Amazon Live — формата live-стримов с блогерами напрямую на площадке Amazon. Новый канал продаж для бренда Maree на рынке США.',
+    myRole: 'Организовывала и продюсировала всё направление Amazon Live: координация с инфлюенс-менеджерами, подбор блогеров, согласование и контроль выхода стримов.',
+    whatIDid: [
+      'Подбирала блогеров под формат Amazon Live совместно с инфлюенс-менеджерами.',
+      'Согласовывала интеграции и контролировала выход стримов.',
+      'В пиковые месяцы — до 20 стримов в месяц.'
+    ],
+    results: [
+      '100+ продаж ежемесячно с Amazon Live-канала.',
+      'До 20 стримов в месяц в пиковые периоды.',
+      'Новый канал продаж запущен с нуля до стабильных результатов.'
+    ],
+    color: 'bg-emerald-50',
+    amazonStreams: [
+      'https://www.amazon.com/live/broadcast/5bf3345b-cfac-45e6-bb0c-0b39e4f00147?ref=cm_sw_al_sgEidoh0zj5Uz__',
+      'https://www.amazon.com/live/broadcast/08567152-4cd1-43fe-b8cf-436a228c0360?ref=cm_sw_al_kqN7eHU97kc6m__',
+      'https://www.amazon.com/live/broadcast/7eb8db18-8813-4b3f-aa63-75475d510bbd?ref=cm_sw_al_rgLPqdCPS8stj__'
     ]
   },
   {
@@ -260,6 +309,28 @@ const CaseCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index 
                   </div>
                 );
               })}
+            </div>
+          </div>
+        )}
+        {study.amazonStreams && (
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 flex items-center gap-2">
+              <Video size={14} /> Amazon Live Streams
+            </h4>
+            <div className="flex flex-wrap gap-3">
+              {study.amazonStreams.map((url, i) => (
+                <a
+                  key={i}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-400/20 border border-amber-300/40 text-sm font-bold text-amber-800 hover:bg-amber-400/40 transition-all"
+                >
+                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+                  Stream {i + 1}
+                  <ArrowRight size={14} />
+                </a>
+              ))}
             </div>
           </div>
         )}
