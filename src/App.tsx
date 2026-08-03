@@ -34,11 +34,38 @@ interface CaseStudy {
   folderLink?: string;
   videos?: string[];
   amazonStreams?: string[];
+  videoLinks?: string[];
 }
 
 // --- Data ---
 
 const CASE_STUDIES: CaseStudy[] = [
+  {
+    id: 'mixit',
+    title: 'MIXIT',
+    role: 'Creative Producer',
+    period: 'май 2025 — н.в., проектная занятость',
+    context: 'Mixit — российский косметический бренд. Продвижение продуктов через блогеров с фокусом на охваты и продажи. Охваты — за счёт видео в TikTok, продажи — через сторис и посты во ВКонтакте, Telegram и MAX.',
+    myRole: 'Работала над продвижением 5 продуктов совместно с 6 инфлюенс-менеджерами. Отвечала за креативную часть интеграций — от гипотезы до финального ролика/поста.',
+    whatIDid: [
+      'Разрабатывала гипотезы для интеграций с блогерами — 5-7 гипотез в тесте ежемесячно.',
+      'Писала сценарии для съёмочных роликов и тексты постов для текстовых форматов.',
+      'Отсматривала готовые ролики, вносила правки, редактировала, при необходимости помогала с монтажом.',
+      'Анализировала статистику и продажи, масштабировала рабочие гипотезы.',
+      'Вела процесс на объёме ~60 публикаций в неделю.'
+    ],
+    results: [
+      'Средний ROI — 50%.',
+      'Средний охват — 500К.',
+      'По каждому продукту стабильно выявлено 2 рабочие связки, масштабированные из тестовых гипотез.'
+    ],
+    color: 'bg-sky-50',
+    videoLinks: [
+      'https://disk.yandex.ru/i/AIw9EeQd9GXR9w',
+      'https://disk.yandex.ru/i/AOsnLMtVZgeuuQ',
+      'https://disk.yandex.ru/i/kOJUHG27tvFtUg'
+    ]
+  },
   {
     id: 'maree',
     title: 'MAREE',
@@ -205,7 +232,7 @@ const BRANDS = [
 const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
     <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <span className="font-sans font-bold text-xl tracking-tight">ALINA BULATOVA</span>
+      <span className="font-sans font-bold text-xl tracking-tight">ALINA ZENGER</span>
       <div className="hidden md:flex gap-8">
         <a href="#cases" className="text-sm font-medium hover:text-emerald-600 transition-colors">Кейсы</a>
         <a href="#about" className="text-sm font-medium hover:text-emerald-600 transition-colors">Обо мне</a>
@@ -312,6 +339,28 @@ const CaseCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index 
             </div>
           </div>
         )}
+        {study.videoLinks && (
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 flex items-center gap-2">
+              <Video size={14} /> Избранные видео
+            </h4>
+            <div className="flex flex-wrap gap-3">
+              {study.videoLinks.map((url, i) => (
+                <a
+                  key={i}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-5 py-3 rounded-xl bg-sky-400/20 border border-sky-300/40 text-sm font-bold text-sky-800 hover:bg-sky-400/40 transition-all"
+                >
+                  <Video size={16} />
+                  Видео {i + 1}
+                  <ArrowRight size={14} />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
         {study.amazonStreams && (
           <div className="space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 flex items-center gap-2">
@@ -394,7 +443,7 @@ export default function App() {
             <div className="aspect-[4/5] rounded-[40px] overflow-hidden bg-zinc-100 relative z-10 border border-black/5">
               <img 
                 src="https://drive.google.com/thumbnail?id=15wbAbJIjwjevcPndLhVbr0LXUcnj_PyD&sz=w1000" 
-                alt="Alina Bulatova" 
+                alt="Alina Zenger" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -562,7 +611,7 @@ export default function App() {
       <footer className="py-12 px-6 border-t border-black/5 bg-white">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-center md:text-left">
-            <div className="font-bold text-lg mb-2">ALINA BULATOVA</div>
+            <div className="font-bold text-lg mb-2">ALINA ZENGER</div>
             <p className="text-sm text-black/40">© 2024 Lead Creative Producer. All rights reserved.</p>
           </div>
           <div className="flex gap-6">
