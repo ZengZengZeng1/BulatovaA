@@ -351,13 +351,13 @@ const CaseCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index 
             <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 flex items-center gap-2">
               <ImageIcon size={14} /> Визуальные референсы AI-кадров
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-start">
               {study.photos.map((photoUrl, i) => (
-                <div key={i} className="aspect-[4/3] rounded-2xl overflow-hidden bg-black/5 border border-black/5 shadow-sm">
+                <div key={i} className="rounded-2xl overflow-hidden bg-black/5 border border-black/5 shadow-sm">
                   <img
                     src={photoUrl}
                     alt={`${study.title} кадр ${i + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto block"
                     referrerPolicy="no-referrer"
                     loading="lazy"
                   />
