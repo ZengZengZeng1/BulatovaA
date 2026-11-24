@@ -16,7 +16,9 @@ import {
   Instagram,
   Target,
   BarChart3,
-  Layers
+  Layers,
+  Image as ImageIcon,
+  FileText
 } from 'lucide-react';
 
 // --- Types ---
@@ -35,11 +37,38 @@ interface CaseStudy {
   videos?: string[];
   amazonStreams?: string[];
   videoLinks?: string[];
+  photos?: string[];
+  scriptLink?: string;
 }
 
 // --- Data ---
 
 const CASE_STUDIES: CaseStudy[] = [
+  {
+    id: 'ai-series',
+    title: 'AI-СЕРИАЛЫ ДЛЯ ДЕВЕЛОПЕРОВ',
+    role: 'Сценарист · Creative Producer',
+    period: 'проектная работа',
+    context: 'Задача — разработать сценарий пилотной серии AI-сериала для строительной компании. Формат — короткое юмористическое видео на 1–1,5 минуты. Креативный вызов: сделать не просто рекламный ролик, а основу для брендового сериала, который вовлекает аудиторию, повышает узнаваемость застройщика и формирует интерес к бренду в целом, а не только к отдельному жилому комплексу.',
+    myRole: 'Разработала сценарий пилотной серии с учётом брифа, целевой аудитории и коммуникационных задач бренда. Отдельное условие проекта — полное производство с помощью нейросетей: без съёмок и использования реального видеоматериала.',
+    whatIDid: [
+      'Разработала сценарий пилотной серии с учётом брифа, целевой аудитории и коммуникационных задач бренда.',
+      'Продумала сюжет и юмористические ситуации.',
+      'Встроила бренд в историю — так, чтобы он работал как основа для целого сериала, а не разовой рекламы.',
+      'Выстроила материал под полное AI-производство: без съёмок и реального видео.'
+    ],
+    results: [
+      'Сценарий пилотной серии.',
+      'Визуальные референсы AI-кадров для будущего ролика.'
+    ],
+    color: 'bg-violet-50',
+    scriptLink: 'https://docs.google.com/document/d/1qQ_FGgV1QTYKg_hSHVRGXCBabgb_E94Rj0Um_8KusQs/edit?tab=t.0',
+    photos: [
+      'https://drive.google.com/thumbnail?id=1GTxLf6WUHL3lmqW2F9RNkzJHNHDBtLdM&sz=w1200',
+      'https://drive.google.com/thumbnail?id=19bmh8tFuMW4IzC9sPsn_wFVgUj-lfnpv&sz=w1200',
+      'https://drive.google.com/thumbnail?id=1HnIuHzkjUJv-kxT6Ktq1umH1DtsEMsdy&sz=w1200'
+    ]
+  },
   {
     id: 'mixit',
     title: 'MIXIT',
@@ -317,6 +346,45 @@ const CaseCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index 
           </div>
         </div>
 
+        {study.photos && (
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 flex items-center gap-2">
+              <ImageIcon size={14} /> Визуальные референсы AI-кадров
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {study.photos.map((photoUrl, i) => (
+                <div key={i} className="aspect-[4/3] rounded-2xl overflow-hidden bg-black/5 border border-black/5 shadow-sm">
+                  <img
+                    src={photoUrl}
+                    alt={`${study.title} кадр ${i + 1}`}
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {study.scriptLink && (
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 flex items-center gap-2">
+              <FileText size={14} /> Сценарий
+            </h4>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={study.scriptLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-3 rounded-xl bg-violet-400/20 border border-violet-300/40 text-sm font-bold text-violet-800 hover:bg-violet-400/40 transition-all"
+              >
+                <FileText size={16} />
+                Читать сценарий
+                <ArrowRight size={14} />
+              </a>
+            </div>
+          </div>
+        )}
         {study.videos && (
           <div className="space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-widest text-black/40 flex items-center gap-2">
